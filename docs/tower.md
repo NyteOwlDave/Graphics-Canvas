@@ -16,3 +16,8 @@ Did a pull request after the Lenovo's Pull and Sync. SUCCESS!
 Looks like we're in business. Both workstations can now use the Lenovo branch.
 Still need to figure out how to merge the branch back to main...
 
+> Addendum 1 ~ 5:39 pm
+
+Added individual Markdown files for each host that had none.
+
+
