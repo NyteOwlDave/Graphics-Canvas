@@ -1,0 +1,37 @@
+
+html, body {
+    font : 16pt monospace;
+}
+
+html, body {
+    font : 10pt monospace;
+    color : mintcream;
+    background : rgb( 1, 1, 22 );
+}
+
+body {
+    margin-bottom : 50vh;
+}
+
+button, a, input, select {
+    font : 10pt monospace;
+}
+
+a {
+    color : lemonchiffon;
+}
+
+a:visited {
+    color : lemon;
+}
+
+textarea {
+    padding : 10px;
+    width  : calc( 100vw - 50px );
+    height : calc( 70vh );
+    min-height : 16ch;
+    font   : 12pt monospace;
+    resize : none;
+    overflow-x : scroll;
+    overflow-y : scroll;
+}

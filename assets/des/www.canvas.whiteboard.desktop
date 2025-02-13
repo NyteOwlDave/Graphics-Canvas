@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Graphics Canvas Whiteboard
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --ignore-profile-directory-if-not-exists https://whiteboard.office.com/me/whiteboards/2a6d4e18-3fcc-4550-8bc6-eabe81d9f772
+Icon=/home/nyteowldave/.config/google-chrome/Default/Web Shortcut Icons/shortcut-7788890e20566d479f096cd5a932a06c.png
+URL=https://whiteboard.office.com/me/whiteboards/2a6d4e18-3fcc-4550-8bc6-eabe81d9f772
+Comment=Open https://whiteboard.office.com/me/whiteboards/2a6d4e18-3fcc-4550-8bc6-eabe81d9f772 in a new tab in Google Chrome.

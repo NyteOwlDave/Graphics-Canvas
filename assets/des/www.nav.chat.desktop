@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Johnny 5 Navigator
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --ignore-profile-directory-if-not-exists https://claude.ai/chat/77b86b50-7850-4c29-81af-7b0ec0f8c127
+Icon=/home/nyteowldave/.config/google-chrome/Default/Web Shortcut Icons/shortcut-acbe21964d8a5631c954e3d29766630a.png
+URL=https://claude.ai/chat/77b86b50-7850-4c29-81af-7b0ec0f8c127
+Comment=Open https://claude.ai/chat/77b86b50-7850-4c29-81af-7b0ec0f8c127 in a new tab in Google Chrome.

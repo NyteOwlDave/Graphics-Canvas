@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+td, th { border: 1px solid #c3c3c3; padding: 0 3px 0 3px; }
+table { border-collapse: collapse; }
+img { max-width: 100%; }
+</style>
+<meta name="generator" content="ReText 7.2.3">
+<title>test</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+<p><link rel="stylesheet" href="style/test-style.css"></p>
+<script src="api/test-api.mjs"></script>
+
+<style>
+</style>
+
+<h1>Input</h1>
+<textarea ip wrap="off"></textarea>
+
+<menu>
+<button onclick="run()">Run</button>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">Help</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSocket</a>
+</menu>
+
+<hr>
+<h1>Output</h1>
+<textarea op wrap="off"></textarea>
+
+<menu>
+<button onclick="reset()">Clear</button>
+</menu>
+
+<hr>
+<h1>Links</h1>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSocket</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a></li>
+</ul>
+<hr>
+<script>
+function lando( falcon, cargo ) {
+    try {
+        return falcon( cargo );
+    } catch( e ) {
+        alert( e );
+        return e;
+    }
+}
+</script>
+
+<script>
+function select( what ) {
+    const q = `[${what}]`;
+    return document.querySelector( q );
+}
+const _IP = select( "ip" );
+const _OP = select( "op" );
+</script>
+
+<script>
+function reset() {
+    report( "" );
+}
+</script>
+
+<script>
+function run() {
+    try {
+        const source = input();
+        process( source );
+    } catch( error ) {
+        report( error );
+    }
+}
+</script>
+
+<script>
+function process( source ) {
+    const result = eval( source );
+    report( result );
+}
+</script>
+
+<script>
+function input() {
+    return _IP.value;
+}
+</script>
+
+<script>
+function report( what ) {
+    try {
+        _OP.value = prepare( what );
+    } catch( error ) {
+        alert( error );
+    }
+}
+</script>
+
+<script>
+function prepare( what ) {
+    const FN = "function";
+    const SI = Symbol.iterator;
+    if ( FN == typeof what ) {
+        return what.toString() || "f()";
+    }
+    if ( what instanceof Error ) {
+        return what.toString();
+    }
+    if ( what instanceof Object ) {
+        const t = typeof what[ SI ];
+        if ( t == FN ) {
+            what = Array.from( what );
+        }
+        if ( Array.isArray( what ) ) {
+            return json( what );
+        }
+        return prepareObject( what )
+    }
+    return String( what );
+}
+</script>
+
+<script>
+function prepareObject( o ) {
+    const keys = Object.keys( o );
+    const prep = k => [ k, String( o[ k ] ) ];
+    return json( keys.map( prep ) );
+}
+</script>
+
+<script>
+function json( o ) {
+    return JSON.stringify( o, null, 2 );
+}
+</script>
+
+</body>
+</html>
