@@ -10,35 +10,4 @@
 
 -->
 
-<title>Graphics Canvas</title>
-
-<script>
-
-function getHostName() {
-    return location.hash.substring( 1 );
-}
-
-function composeURL( host ) {
-    return `http://${host}/std/app/canvas/`;
-}
-
-function main () {
-
-    let hash = location.hash.substring( 1 );
-    if (! hash ) {
-        throw new Error( "Missing hashtag for host name" );
-        return;
-    }
-
-    location = composeURL( host );
-
-}
-
-</script>
-
-<script>
-
-try { main() } catch( error ) { alert( error ) }
-
-</script>
 

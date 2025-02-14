@@ -1,6 +1,6 @@
 
 <title>Host Redirect</title>
-<meta http-equiv="refresh" content="10" />
+<meta http-equiv="refresh" content="1000" />
 
 <script>
 
@@ -11,13 +11,15 @@ function getHostName() {
 }
 
 function composeURL( host ) {
-    return `http://${host}/std/app/canvas/`;
+    const url = `http://${host}/std/app/canvas/`;
+        alert( url );
+        return url;
 }
 
 function main () {
 
-    let hash = location.hash.substring( 1 );
-    if (! hash ) { return; }
+    let host = location.hash.substring( 1 );
+    if (! host ) { return; }
 
     location = composeURL( host );
 
@@ -72,6 +74,10 @@ http://myhost/std/app/canvas
     html, body {
         background : lemonchiffon;
     }
+    body {
+        margin-bottom : 40vh;
+
+    }
     hr {
         margin-top : 22px;
         border : 0;
@@ -112,6 +118,7 @@ http://myhost/std/app/canvas
     <a href="https://1drv.ms/o/c/a698f7622548fa93/EsznA676F-dKsxjOLG4xMNsBXNAhgkTVbhywPL1H3gzaIQ">Notebook</a>
     <a href="https://github.com/nyteowldave/Graphics-Canvas">GitHub Repository</a>
     <a href="https://onedrive.live.com/edit.aspx?resid=A698F7622548FA93!144084">Short URLs</a>
-<hr>
+<hr><legend>Local File System</legend>
+    <a href="./">Workspace</a>
 </nav>
 
