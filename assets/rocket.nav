@@ -1,15 +1,31 @@
 
-+ Navigation Chat
-@ https://claude.ai/chat/77b86b50-7850-4c29-81af-7b0ec0f8c127
-* nav-chat
-
 + Canvas Whiteboard
 @ https://whiteboard.office.com/me/whiteboards/2a6d4e18-3fcc-4550-8bc6-eabe81d9f772
 * whiteboard
 
++ Canvas Whiteboard (Short)
+@ https://cutt.ly/canvas-whiteboard
+* whiteboard-short
+
 + Canvas Notebook
 @ https://1drv.ms/o/c/a698f7622548fa93/EsznA676F-dKsxjOLG4xMNsBXNAhgkTVbhywPL1H3gzaIQ
 * notebook
+
++ Canvas Repository
+@ https://github.com/nyteowldave/Graphics-Canvas
+* repo
+
++ Google Document
+@ https://docs.google.com/document/d/1AVMTXtVnY9llnRUY7AbsZTj2g81Ddh_V4aLc0KqVmgc/
+* gdoc
+
++ Google Document (Short)
+@ https://cutt.ly/canvas-gdoc
+* gdoc-short
+
++ Navigation Chat
+@ https://claude.ai/chat/77b86b50-7850-4c29-81af-7b0ec0f8c127
+* nav-chat
 
 + MDN Canvas Docs
 @ https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
@@ -39,9 +55,6 @@
 @ http://dave-lenovo/std/sandbox/canvas/menu.html
 * menu
 
-* Canvas Repository
-@ https://github.com/nyteowldave/Graphics-Canvas
-* repo
 
 + Canvas Diagram
 @ (pending)
@@ -51,7 +64,4 @@
 @ (pending)
 * flowchart
 
-* Google Document
-@ (pending)
-* google-doc
 

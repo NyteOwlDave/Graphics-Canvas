@@ -168,7 +168,7 @@ function composeRocket( title, link, filename ) {
     const content = [
         `<title>${title}</title>` ,
         `<script>` ,
-        `location="${link}"`;
+        `location="${link}"`,
         `</script>\n`
     ].join( "\n" );
     return { filename , content };
