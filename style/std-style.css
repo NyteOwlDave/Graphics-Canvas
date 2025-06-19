@@ -35,3 +35,43 @@ textarea {
     overflow-x : scroll;
     overflow-y : scroll;
 }
+
+code {
+    border : none;
+}
+
+samp {
+    border : none;
+}
+
+code, samp {
+    color : rgb( 180, 255, 180 );
+}
+
+aside {
+    border : none;
+}
+
+aside legend {
+    font-size : x-large;
+}
+
+aside p {
+    padding-left  : 19px;
+    padding-right : 19px;
+}
+
+blockquote {
+    border : none;
+    border-left : 2px solid gold;
+    padding-left : 5px;
+}
+
+article {
+    border : none;
+}
+
+section {
+    border : none;
+}
+

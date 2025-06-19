@@ -1,0 +1,124 @@
+
+<title>Host Redirect</title>
+<meta http-equiv="refresh" content="1000" />
+
+<script>
+
+console.log( "Refresh", new Date() );
+
+function getHostName() {
+    return location.hash.substring( 1 );
+}
+
+function composeURL( host ) {
+    const url = `http://${host}/std/app/canvas/`;
+        alert( url );
+        return url;
+}
+
+function main () {
+
+    let host = location.hash.substring( 1 );
+    if (! host ) { return; }
+
+    location = composeURL( host );
+
+}
+
+</script>
+
+<script>
+
+try { main() } catch( error ) { alert( error ) }
+
+</script>
+
+<article>
+
+<h1>Host Redirect</h1>
+
+<p>
+    This file accepts the name of a LAN host in the hashtag portion of the URL.
+</p>
+
+<p>
+    It uses that hostname to compose a URL for the Graphics Canvas folder on
+    that host. This assumes that this folder exists in the specified standard
+    location on the target host.
+</p>
+
+<p>
+    The typical url for some host is shown below:
+</p>
+
+<pre>
+<samp>
+http://myhost/std/app/canvas
+</samp>
+</pre>
+
+<p>
+    For convenience, all of the known hosts are given in the links below.
+    There are also links to the sandbox locations on the Tower and Lenovo, since
+    these are where initial development took place.
+</p>
+
+<p>
+    In the event that all else fails, there's a link to the Whiteboard as well.
+</p>
+
+
+</article>
+
+<style>
+    html, body {
+        background : lemonchiffon;
+    }
+    body {
+        margin-bottom : 40vh;
+
+    }
+    hr {
+        margin-top : 22px;
+        border : 0;
+        border-top : 2px dotted gold;
+    }
+    nav a {        
+        display: block;
+        padding-left : 20px;
+    }
+    nav legend {
+        font-size : larger;
+        text-decoration : underline;
+    }
+    pre {
+        background : rgb( 1, 1, 22 );
+        color : mintcream;
+        padding-left : 20px;
+        padding-right : 20px;
+        overflow-x : scroll;
+    }
+</style>
+
+<hr>
+<nav><legend>Standard Workspaces</legend>
+    <a href="http://dave-tower/std/app/canvas">Tower</a>
+    <a href="http://dave-ryzen/std/app/canvas">Ryzen</a>
+    <a href="http://dave-zombie/std/app/canvas">Zombie</a>
+    <a href="http://dave-legacy/std/app/canvas">Legacy</a>
+    <a href="http://dave-probook/std/app/canvas">Probook</a>
+    <a href="http://dave-lenovo/std/app/canvas">Lenovo</a>
+<hr><legend>Sandbox Workspaces</legend>
+    <a href="http://dave-lenovo/std/sandbox/canvas">Lenovo Sandbox</a>
+    <a href="http://dave-tower/std/sandbox/canvas">Tower Sandbox</a>
+<hr><legend>Special Workspaces</legend>
+    <a href="http://dave-ryzen/canvas">Ryzen</a>
+<hr><legend>Additional Resources</legend>
+    <a href="https://whiteboard.office.com/me/whiteboards/2a6d4e18-3fcc-4550-8bc6-eabe81d9f772">Whiteboard</a>
+    <a href="https://1drv.ms/o/c/a698f7622548fa93/EsznA676F-dKsxjOLG4xMNsBXNAhgkTVbhywPL1H3gzaIQ">Notebook</a>
+    <a href="https://github.com/nyteowldave/Graphics-Canvas">GitHub Repository</a>
+    <a href="https://onedrive.live.com/edit.aspx?resid=A698F7622548FA93!144084">Short URLs</a>
+<hr><legend>Local File System</legend>
+    <a href="./">Workspace</a>
+</nav>
+

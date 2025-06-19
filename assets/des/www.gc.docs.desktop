@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Graphics Canvas (Docs)
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --ignore-profile-directory-if-not-exists "https://docs.google.com/document/d/1AVMTXtVnY9llnRUY7AbsZTj2g81Ddh_V4aLc0KqVmgc/edit?pli=1&tab=t.0#heading=h.goq7vq1x0lzl"
+Icon=/home/nyteowldave/.config/google-chrome/Default/Web Shortcut Icons/shortcut-79b3cb642e8c69f6587091ed1debf79d.png
+URL=https://docs.google.com/document/d/1AVMTXtVnY9llnRUY7AbsZTj2g81Ddh_V4aLc0KqVmgc/edit?pli=1&tab=t.0#heading=h.goq7vq1x0lzl
+Comment=Open https://docs.google.com/document/d/1AVMTXtVnY9llnRUY7AbsZTj2g81Ddh_V4aLc0KqVmgc/edit?pli=1&tab=t.0#heading=h.goq7vq1x0lzl in a new tab in Google Chrome.
