@@ -20,4 +20,12 @@ Still need to figure out how to merge the branch back to main...
 
 Added individual Markdown files for each host that had none.
 
+> 2025-JUN-19
+
+Created a new clone repo, since I'd forgotten that the original
+was in the WSF Sandbox.
+
+I archived the original and created a waypoint to the new clone
+location, which is in the `GRAPHICS` workspace, under `www`.
+
 
