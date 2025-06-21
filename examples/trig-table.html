@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Trig Table</title>
+<style>
+@import url("./style/docs.css");
+.parent {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;    /* Centers vertically */
+    width : 100%;
+    height : 100%;
+    flex-direction: column;
+}
+#message {
+    z-index : 424242;
+}
+.hidden {
+    display : none;
+}
+</style>
+<script>
+const cls = () => console.clear();
+const again = () => location.reload();
+</script>
+</head>
+
+<body>
+
+<header>
+<nav>
+<a href="./">⋄ Workspace ⋄</a>
+<a href="http://dave-legacy/std/app/canvas/examples/trig-table.html" title="Home Page">⋄ Home ⋄</a>
+</nav>
+</header>
+
+<main>
+  <div class="parent">
+    <div>
+    <img src="./art/trig-chart.png">
+    </div>
+    <div id="message">Hold down CTRL to draw</div>    
+  </div>
+</main>
+
+<footer>
+<menu>
+<button onclick="on_copy()">Copy</button>
+<button onclick="on_paste()">Paste</button>
+<button onclick="on_show_hide(this)">Hide</button>
+<button onclick="on_refresh()">Refresh</button>
+<button onclick="on_clear()">Clear</button>
+<button onclick="on_calc()">Calculate</button>
+</menu>
+</footer>
+
+<script>
+function snap( n, digits=6 ) {
+    if ( isFinite( n ) ) {
+        return Number( n.toFixed( digits ) );
+    }
+    return n;
+}
+</script>
+
+<script>
+const pi = Math.PI;
+const sqrt = n => Math.sqrt( n );
+const abs = n => Math.abs( n );
+const sin = n => Math.sin( n );
+const cos = n => Math.cos( n );
+// const tan = n => Math.tan( n );
+const csc = n => 1 / snap( Math.sin( n ), 12 );
+const sec = n => 1 / snap( Math.cos( n ), 12 );
+const cot = n => 1 / snap( Math.tan( n ), 12 );
+const d2r = n => n * pi / 180;
+const r2d = n => n * 180 / pi;
+const dist = (a, b) => abs( a-b );
+</script>
+
+<script>
+function tan( n ) {
+    let degrees = r2d( n );
+    if ( degrees % 90 ) {
+        return Math.tan( n );
+    }
+    if ( degrees % 180 ) {
+        return ( degrees > 180 ) 
+          ? -Infinity
+          : Infinity
+    }
+    return 0;
+}
+</script>
+
+<script>
+function approx( a, b, tolerance=1e-6 ) {
+    return ( dist( a, b ) <= tolerance );
+}
+</script>
+
+<script>
+const trigSchema = `
+Name | Value
+`;
+</script>
+
+<script>
+const trigTable = {
+"zero"     :  0 ,
+"one"      :  1 ,
+"infinity" : Infinity ,
+"one_half" : 1/2 ,
+"sqrt2"    : sqrt( 2 ) ,
+"sqrt3"    : sqrt( 3 ) ,
+"sqrt2_over_two" : sqrt( 2 ) / 2 ,
+"sqrt3_over_two" : sqrt( 3 ) / 2 ,
+"one_over_sqrt3" : 1 / sqrt( 3 ) ,
+"two_over_sqrt3" : 2 / sqrt( 3 )
+};
+</script>
+
+<script>
+const trigFunctions = {
+  sin , cos , tan ,
+  csc , sec , cot
+};
+</script>
+
+<script>
+const miscFunctions = {
+  r2d , d2r, abs, sqrt,
+  dist, snap, approx
+};
+</script>
+
+<script>
+function calcRow( action ) {
+    let steps = [ 0, 30, 45, 60, 90, 120, 180, 270, 360 ]; // degrees;
+    let results = [];
+    while ( steps.length ) {
+        let degrees = steps.shift();
+        let radians = d2r( degrees );
+        let value = snap( action( radians ) );
+        results.push( value );
+    }
+    return results;
+}
+</script>
+
+<script>
+function calcTable() {
+    message.textContent = "Check console for results";
+    const keys = [ "sin", "cos", "tan", "csc", "sec", "cot" ];
+    const results = {};
+    const round = n => snap( n );
+    function calc( k ) {
+        results[ k ] = calcRow( trigFunctions[ k ] ).map( round );
+    }
+    keys.forEach( calc );
+    console.log( results );
+}
+</script>
+
+<script>
+function on_calc() {
+    try {
+        calcTable();
+    } catch ( e ) {
+        console.error( e );
+        alert( e );
+    }
+}
+function on_clear() {
+    clearImage();
+}
+function on_copy() {
+    captureImage();
+}
+function on_paste() {
+    replaceImage();
+}
+function on_refresh() {
+    const img = document.querySelector( "img" );
+    img.src = "./art/trig-chart.png";
+}
+function on_show_hide( button ) {
+    const key = button.textContent.trim().toLowerCase();
+    const pane = document.querySelector( '.parent' );
+    if ( key === "hide" ) {
+        button.textContent = "Show";
+        pane.classList.add( "hidden" );
+    } else {
+        button.textContent = "Hide";
+        pane.classList.remove( "hidden" );
+    }
+}
+</script>
+
+<script>
+function run() {
+    on_clear();
+    on_calc();
+}
+</script>
+
+<script>
+
+function clearImage() {
+    const ctx = canvas.getContext( "2d" );
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect( 0, 0 , w, h );
+}
+
+function captureImage() {
+    const ctx = canvas.getContext( "2d" );
+    const img = document.querySelector( "img" );
+    ctx.drawImage( img, 0, 0 );
+}
+
+function replaceImage() {
+    const img = document.querySelector( "img" );
+    img.src = canvas.toDataURL();
+}
+
+function createCanvas() {
+    const canvas = document.createElement( 'canvas' );
+    const main   = document.querySelector( 'main' );
+    main.appendChild( canvas );
+    const img = document.querySelector( 'img' );
+    const rc = img.getBoundingClientRect();
+    canvas.width  = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    canvas.style.position = "absolute";
+    canvas.style.left = "10px";
+    canvas.style.top  = "10px";
+    canvas.style.border = "3px solid red";
+    canvas.id = "canvas";
+}
+
+function initDragDrop( gadget ) {
+    gadget.addEventListener( "mousedown", mickey );
+    gadget.addEventListener( "mousemove", mickey );
+    gadget.addEventListener( "mouseup", mickey );
+}
+
+function initCanvas() {
+    createCanvas();
+    initDragDrop( canvas );
+}
+
+function mickey( event ) {
+    const me = mickey;
+    let state = me.state = me.state 
+      || { dragging : false };
+    if ( minnie( event ) ) {
+        return;
+    }
+    if ( event.button ) { // Left = 0
+        // Middle = 1
+        if ( event.button === 1 ) {
+            captureImage();
+            return handled();            
+        }
+        return;
+    }
+    switch ( event.type ) {
+        case "mousedown": return begin();
+        case "mousemove": return move();
+        case "mouseup"  : return end();
+        default : return;
+    }
+    function handled() {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    function begin() {
+        if ( me.state.dragging ) {
+            return handled();
+        }
+        me.state.dragging = true;
+        let gadget = 
+        me.state.gadget = event.target;
+        me.state.origin = gadget.getBoundingClientRect();
+        me.state.x = event.clientX;
+        me.state.y = event.clientY;
+        console.log( "Begin Drag", gadget );
+        return handled();
+    }
+    function move() {
+        if (! me.state.dragging ) {
+            return handled();
+        }
+        try {
+          const ox = me.state.x;
+          const oy = me.state.y;
+          const dx = event.clientX - ox;
+          const dy = event.clientY - oy;
+          me.state.x = event.clientX;
+          me.state.y = event.clientY;
+          const gadget = me.state.gadget;
+          const style = gadget.style;
+          const nx = parseInt( style.left ) + dx;
+          const ny = parseInt( style.top  ) + dy;
+          style.left = nx + "px";
+          style.top  = ny + "px";
+          message.innerText = `(${nx}, ${ny})`;
+        } catch ( e ) {
+          // Nothing to do...
+        }
+        return handled();
+    }
+    function end() {
+        if ( me.state.dragging ) {
+          move();
+          me.state.dragging = false;
+          console.log( "End Drag" );
+        } else {
+          return handled();
+        }
+    }
+}
+
+</script>
+
+<script>
+function minnie( event ) {
+    function handled() {
+        event.preventDefault();
+        event.stopPropagation();
+        return true;
+    }
+    if (! event.ctrlKey ) {
+        return false;
+    }
+    if ( event.button ) { // Left = 0
+        return;
+    }
+    const gadget = event.target;
+    const rc = gadget.getBoundingClientRect();
+    const ctx = canvas.getContext( "2d" );
+    if ( event.type === "mousedown" ) {
+        if ( mickey.state.dragging ) return;
+        mickey.state.dragging = true;
+        const x = event.clientX - rc.x;
+        const y = event.clientY - rc.y;
+        ctx.beginPath();
+        ctx.moveTo( x, y );
+        return handled();
+    }
+    if ( event.type === "mousemove" ) {
+        if (! mickey.state.dragging ) return;
+        const x = event.clientX - rc.x;
+        const y = event.clientY - rc.y;
+        ctx.lineTo( x, y );
+        ctx.stroke();
+        return handled();
+    }
+    if ( event.type === "mouseup" ) {
+        if (! mickey.state.dragging ) return;
+        const x = event.clientX - rc.x;
+        const y = event.clientY - rc.y;
+        ctx.lineTo( x, y );
+        ctx.stroke();
+        mickey.state.dragging = false;
+        return handled();
+    }
+    return handled();
+}
+</script>
+
+<script>
+addEventListener( 'load', initCanvas );
+</script>
+
+</body>
+</html>
