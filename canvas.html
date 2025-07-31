@@ -1,3 +1,129 @@
-<link rel="stylesheet" href="style/canvas-style.css">
-<script src="api/canvas-api.mjs"></script>
- 
+
+<style>
+    @import url("http://aloralyn.org:4242/style/wbrd/lemon.css");
+    @import url("style/canvas-style.css");
+    #sip {
+        margin   : 0;
+        border   : 0;
+        padding  : 1.42ch;
+        display  : block;
+        position : fixed;
+        top    : 0;
+        left   : 0;
+        width  : calc( 100% - 0px );
+        resize : vertical;
+        overflow-x  : scroll;
+        overflow-y  : auto;
+        font-family : "Noto Sans Mono", monospace;
+        white-space : nowrap;
+        z-index     : 424242;
+    }
+    #sip:focus {
+        outline : none;
+    }
+    canvas {
+        margin       : 1px;
+        margin-top   : 4px;
+        border   : 0;
+        display  : block;
+        position : fixed;
+        top    : 0;
+        left   : 0;
+    }
+</style>
+
+<script src="./api/canvas-api.mjs"></script>
+
+<textarea id="sip" wrap="off" rows="16">
+    Welcome!
+</textarea>
+
+<script id="importedSIP">
+
+st = sip.style;
+st.fontSize = "18pt";
+// st.width    = "1140px";
+
+sip.eval = function() {
+   console.log( "Evaluating SIP ..." );
+   return sip.output = window.eval( sip.value );
+}
+
+ProjectDetails = {
+  title  : "Graphics Canvas" ,
+  host   : "dave-omega" ,
+  home   : location.href ,
+  tikey  : "c1c42985-894e-4757-83c1-dfe4e9a13e3a" ,
+  tidate : "2025-JUL-30"
+};
+
+Remarks = `
+
+This window needs to remain open.
+
+I'm developing code for this app in the Debug Console.
+
+I need to capture that code and save it to the Workspace!!!
+
+`;
+
+eraseCanvas = function( color = 'black' ) {
+   ctx = canvas.ctx = canvas.getContext( '2d' );
+   let w = canvas.width;
+   let h = canvas.height;
+   ctx.fillStyle = color;
+   ctx.fillRect( 0, 0, w, h );
+   return { w, h, ctx, canvas, color };
+}
+
+hasCanvas = function() {
+    canvas = window.canvas = document.body.querySelector( 'canvas' );
+    return (!! canvas );
+}
+
+removeCanvas = function() {
+    if ( hasCanvas() ) {
+        canvas.remove();
+        window.canvas = undefined;
+    }
+}
+
+createCanvas = function() {
+    const body = document.body;
+    removeCanvas();
+    canvas = document.createElement( 'canvas' );
+    body.appendChild( canvas );
+    canvas.id = 'canvas';
+    canvas.erase = eraseCanvas;
+    canvas.width  = screen.availWidth  - 2;
+    canvas.height = screen.availHeight - 6;
+    canvas.style.border = "1px dotted gold";
+    body.style.width = canvas.width + "px";
+    return ( window.canvas = canvas );
+}
+
+</script>
+
+<script>
+
+function main() {
+    try {
+        createCanvas();
+        sip.value = importedSIP.innerText;
+    } catch ( e ) { 
+        console.error( e );
+        alert( e );
+    }
+}
+
+function moveCanvasTop() {
+    let cs = getComputedStyle( sip );
+    // let top = cs.height;
+    canvas.style.top = cs.height;
+}
+
+addEventListener( 'load', main );
+
+setInterval( moveCanvasTop, 342 );
+
+</script>
