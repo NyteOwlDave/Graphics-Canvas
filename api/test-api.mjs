@@ -1,10 +1,9 @@
 
-const D = document;
-const H = D.head;
-const B = D.body;
-const T = D.firstElementChild;
+// const D = document;
 
-function lando( falcon, cargo ) {
+/*
+
+export function lando( falcon, cargo ) {
     try {
         return falcon( cargo );
     } catch( e ) {
@@ -13,12 +12,13 @@ function lando( falcon, cargo ) {
     }
 }
 
-function selecto( what ) {
+export function selecto( what ) {
     const q = `[${what}]`;
     return document.querySelector( q );
 }
 
-function prepare( what ) {
+
+export function prepare( what ) {
     const FN = "function";
     const SI = Symbol.iterator;
     if ( FN == typeof what ) {
@@ -40,14 +40,15 @@ function prepare( what ) {
     return String( what );
 }
 
-function prepareObject( o ) {
+export function prepareObject( o ) {
     const keys = Object.keys( o );
     const prep = k => [ k, String( o[ k ] ) ];
     return json( keys.map( prep ) );
 }
 
-function json( o ) {
+export function json( o ) {
     return JSON.stringify( o, null, 2 );
 }
 
 
+*/

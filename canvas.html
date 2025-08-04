@@ -1,3 +1,17 @@
+<html>
+<head>
+
+<meta charset="utf-8">
+<title>Graphics Canvas</title>
+
+<script type="module" src="./api/canvas-api.mjs"></script>
+<script type="module" src="./api/editor-api.mjs"></script>
+<script type="module" src="./api/menu-api.mjs"></script>
+<script type="module" src="./api/test-api.mjs"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
 
 <style>
     @import url("http://aloralyn.org:4242/style/wbrd/lemon.css");
@@ -32,7 +46,94 @@
     }
 </style>
 
-<script src="./api/canvas-api.mjs"></script>
+
+<link rel="stylesheet" href="style/canvas-style.css">
+
+<script>
+
+function main() {
+    if (! detectThor() ) { loadThor(); }
+}
+
+addEventListener( 'load', main );
+</script>
+
+<script>
+function detectThor() {
+    return ( "function" === typeof thor );
+}
+</script>
+</head>
+
+<body>
+
+<script>
+
+const ThorURLs = [
+"http://dave-pi/festus/Q/api/thor.js" ,
+"http://dave-lenovo/festus/Q/api/thor.js" ,
+"http://dave-probook/festus/Q/api/thor.js" ,
+"http://dave-legacy/festus/Q/api/thor.js" ,
+"http://dave-zombie/festus/Q/api/thor.js" ,
+"http://dave-ryzen/festus/Q/api/thor.js" ,
+"http://dave-tower/festus/Q/api/thor.js" ,
+"http://dave-omega/festus/Q/api/thor.js" ,
+"http://aloralyn.org:4242/42m/core/api/thor.js" ,
+"https://nyteowldave.work/greystoke/api/thor.js" ,
+"https://nyteowldave.github.io/chachi/api/thor.js"
+];
+
+function loadThor() {
+    try {
+        if (! ThorURLs.length ) {
+            throw new Error( "Unabled to load Thor Module" );
+        }
+        if ( "function" === typeof thor ) {
+            return;
+        }
+        loadModule( ThorURLs.pop(), "idThor" );
+    } catch ( e ) {
+        console.error( e );
+        // window.location = "./(404)";
+    }
+}
+
+let loading;
+function loadModule( url, id ) {
+    function failed( payload ) {
+        console.error( payload );
+        if ( id === "idThor" ) { loadThor(); }
+    }
+    function loaded( payload ) {
+        console.log( "Found module @ ", loading );
+        const parts = loading.split( "/" );
+        parts.pop();
+        const url = parts.join( "/" )            
+        coreModule( url );       
+    }
+    let se = document.getElementById( id );
+    if ( se ) { se.remove(); }
+    se = document.createElement( 'script' );
+    se.id = id;
+    document.head.appendChild( se );
+    se.onload  = loaded;
+    se.onerror = failed;
+    loading = se.src = url;
+    console.log( "Requesting", se.src );
+}
+
+let coreModules = [ "tigg", "legends", "joni" ];
+
+function coreModule( url ) {
+    const mod = coreModules.pop();
+    if (! mod ) return false;
+    url = `${url}/${mod}.js`;
+    loadModule( url );
+}
+
+</script>
+
+
 
 <textarea id="sip" wrap="off" rows="16">
     Welcome!
@@ -110,6 +211,7 @@ function main() {
     try {
         createCanvas();
         sip.value = importedSIP.innerText;
+        loadThor();
     } catch ( e ) { 
         console.error( e );
         alert( e );
@@ -127,3 +229,6 @@ addEventListener( 'load', main );
 setInterval( moveCanvasTop, 342 );
 
 </script>
+
+</body>
+</html>
